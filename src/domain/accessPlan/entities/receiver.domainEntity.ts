@@ -1,5 +1,6 @@
 import DomainEntity from "../../../shared/domainEntity/domainEntity";
 import UniqueIdentifier from "../../../shared/valueObjects/uniqueIdentifier.valueObj";
+import DomainException from "../../../shared/exceptions/domainException";
 
 export type ReceiverProps = {
     name: string,
@@ -12,6 +13,8 @@ export default class Receiver extends DomainEntity<ReceiverProps> {
     }
 
     public static create(props: ReceiverProps, id?: UniqueIdentifier) {
+        DomainException.whenParameterIsNull(props, "could not create a receiver without its properties.")
+
         return new Receiver(props, id ?? UniqueIdentifier.create())
     }
 }

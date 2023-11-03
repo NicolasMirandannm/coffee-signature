@@ -1,6 +1,7 @@
 import AggregateRoot from "../../shared/aggregateRoot/aggregateRoot";
 import Receiver from "./entities/receiver.domainEntity";
 import UniqueIdentifier from "../../shared/valueObjects/uniqueIdentifier.valueObj";
+import DomainException from "../../shared/exceptions/domainException";
 
 export type AccessPlanProps = {
     planName: string,
@@ -14,6 +15,8 @@ export default class AccessPlan extends AggregateRoot<AccessPlanProps> {
     }
 
     public static create(props: AccessPlanProps, id?: UniqueIdentifier) {
+        DomainException.whenParameterIsNull(props, "could not create a access plan without properties.")
+
         return new AccessPlan(props, id ?? UniqueIdentifier.create());
     }
 }
