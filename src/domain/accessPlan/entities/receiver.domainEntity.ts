@@ -5,6 +5,7 @@ import DomainException from "../../../shared/exceptions/domainException";
 export type ReceiverProps = {
     name: string,
     pixKey: string,
+    cpf: string,
 }
 
 export default class Receiver extends DomainEntity<ReceiverProps> {
