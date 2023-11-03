@@ -16,7 +16,7 @@ export default class Signature extends AggregateRoot<SignatureProps> {
     public static create(props: SignatureProps, id?: UniqueIdentifier) {
         DomainException.whenParameterIsNull(props, "could not create a signature without properties.");
 
-        return new Signature(props, id ?? UniqueIdentifier.create());
+        return new Signature(props, id ?? undefined);
     }
 
     public static createAnNewSignature(planId: UniqueIdentifier, clientName: string): Signature {

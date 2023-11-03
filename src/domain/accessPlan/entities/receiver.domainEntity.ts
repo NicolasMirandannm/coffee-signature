@@ -15,6 +15,6 @@ export default class Receiver extends DomainEntity<ReceiverProps> {
     public static create(props: ReceiverProps, id?: UniqueIdentifier) {
         DomainException.whenParameterIsNull(props, "could not create a receiver without its properties.")
 
-        return new Receiver(props, id ?? UniqueIdentifier.create())
+        return new Receiver(props, id ?? undefined)
     }
 }
