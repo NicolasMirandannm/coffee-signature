@@ -89,3 +89,41 @@ route: http://localhost:3000/access-plan/find?name=intermediario (findByName)
 route: http://localhost:3000/access-plan/ (findAll)
 ```
 
+
+## Signature
+CRUD operations created using domain driven design
+
+To create a signature you need this dto, http POST:
+```json
+{
+  "clientName": "nicolas leonardo miranda lima",
+  "planId": "6546bf6e64d98f2d227cf110"
+}
+```
+```txt
+route: http://localhost:3000/signature/create
+```
+
+To update a signature you need this dto with the signature id, http PATCH:
+```json
+{
+  "planId": "6546bf6e64d98f2d227cf110",
+  "clientName": "nicolas leonardo miranda lima",
+  "pendingPayment": false
+}
+```
+```bash
+route: http://localhost:3000/signature/update/6546c0a822422c9dad06ea02
+```
+
+To delete a accessPlan you need the signature id, http DELETE:
+```bash
+route: http://localhost:3000/signature/delete/6546c0a822422c9dad06ea02
+```
+
+To find the signature you need id of signature or nothing to list all plans, http GET:
+```bash
+route: http://localhost:3000/signature/find?id=6546c0a822422c9dad06ea02 (findByName)
+route: http://localhost:3000/signature/ (findAll)
+```
+
