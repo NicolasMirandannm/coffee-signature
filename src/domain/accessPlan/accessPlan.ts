@@ -1,5 +1,5 @@
 import AggregateRoot from "../../shared/aggregateRoot/aggregateRoot";
-import Receiver from "./entities/receiver.domainEntity";
+import Receiver, {ReceiverProps} from "./entities/receiver.domainEntity";
 import UniqueIdentifier from "../../shared/valueObjects/uniqueIdentifier.valueObj";
 import DomainException from "../../shared/exceptions/domainException";
 
@@ -18,5 +18,9 @@ export default class AccessPlan extends AggregateRoot<AccessPlanProps> {
         DomainException.whenParameterIsNull(props, "could not create a access plan without properties.")
 
         return new AccessPlan(props, id ?? undefined);
+    }
+
+    public getReceiver(): ReceiverProps {
+        return this.getProps().receiver.getProps();
     }
 }

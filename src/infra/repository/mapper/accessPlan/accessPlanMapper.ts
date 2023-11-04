@@ -12,47 +12,52 @@ import {Types} from "mongoose";
 
 @Injectable()
 export default class AccessPlanMapper implements IMapper<AccessPlan, AccessPlanPersistence> {
-    constructor() {}
+    constructor() {
+    }
 
     toDomain(schema: AccessPlanPersistence): AccessPlan {
         InfraException.whenParameterIsNull(schema, "could not create a domain accessPlan without schema.");
-        InfraException.whenParameterIsNull(schema.accessPlan, "could not create a domain accessPlan without accessPlanSchema.");
-        InfraException.whenParameterIsNull(schema.receiver, "could not create a domain accessPlan without receiverSchema.");
+        InfraException.whenParameterIsNull(schema.accessPlanSchema, "could not create a domain accessPlan without accessPlanSchema.");
+        InfraException.whenParameterIsNull(schema.receiverSchema, "could not create a domain accessPlan without receiverSchema.");
 
+        const {receiverSchema, accessPlanSchema} = schema;
 
         const receiverProps: ReceiverProps = {
-            name: schema.receiver.name,
-            cpf: schema.receiver.cpf,
-            pixKey: schema.receiver.pixKey
+            name: receiverSchema.name,
+            cpf: receiverSchema.cpf,
+            pixKey: receiverSchema.pixKey
         }
-        const receiver = Receiver.create(receiverProps, UniqueIdentifier.create(schema.receiver._id.toString()));
+        const receiver = Receiver.create(receiverProps, UniqueIdentifier.create(receiverSchema._id.toString()));
         const accessPlanProps: AccessPlanProps = {
-            planName: schema.accessPlan.name,
-            description: schema.accessPlan.description,
-            price: schema.accessPlan.price,
+            planName: accessPlanSchema.name,
+            description: accessPlanSchema.description,
+            price: accessPlanSchema.price,
             receiver
         }
-        return AccessPlan.create(accessPlanProps, UniqueIdentifier.create(schema.accessPlan._id.toString()))
+        return AccessPlan.create(accessPlanProps, UniqueIdentifier.create(accessPlanSchema._id.toString()))
     }
 
-    toPersistence(accessPlanSchema: AccessPlan): AccessPlanPersistence {
-        const accessPlan: Partial<AccessPlanSchemaDocument> = {
-            _id: new Types.ObjectId(accessPlanSchema.getId().value),
-            name: accessPlanSchema.getProps().planName,
-            price: accessPlanSchema.getProps().price,
-            description: accessPlanSchema.getProps().description,
+    toPersistence(accessPlan: AccessPlan): AccessPlanPersistence {
+        InfraException.whenParameterIsNull(accessPlan, 'could not map to persistence without domain accessPlan.')
+
+        const receiver = accessPlan.getReceiver();
+        const accessPlanSchema: Partial<AccessPlanSchemaDocument> = {
+            _id: new Types.ObjectId(accessPlan.getId().value),
+            name: accessPlan.getProps().planName,
+            price: accessPlan.getProps().price,
+            description: accessPlan.getProps().description,
         }
 
-        const receiver: Partial<ReceiverSchemaDocument> = {
-            _id: new Types.ObjectId(accessPlanSchema.getProps().receiver.getId().value),
-            name: accessPlanSchema.getProps().receiver.getProps().name,
-            cpf: accessPlanSchema.getProps().receiver.getProps().cpf,
-            pixKey: accessPlanSchema.getProps().receiver.getProps().pixKey
+        const receiverSchema: Partial<ReceiverSchemaDocument> = {
+            _id: new Types.ObjectId(accessPlan.getProps().receiver.getId().value),
+            name: receiver.name,
+            cpf: receiver.cpf,
+            pixKey: receiver.pixKey
         }
 
         return {
-            accessPlan,
-            receiver
+            accessPlanSchema,
+            receiverSchema,
         }
     }
 }
