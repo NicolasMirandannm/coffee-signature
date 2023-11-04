@@ -1,11 +1,15 @@
 import {Prop, Schema, SchemaFactory} from "@nestjs/mongoose";
 import * as mongoose  from "mongoose";
-import {ReceiverEntity} from "./receiver.schema";
+import {ReceiverEntity, ReceiverSchemaDocument} from "./receiver.schema";
+import {Types} from "mongoose";
 
 export type AccessPlanSchemaDocument = mongoose.HydratedDocument<AccessPlanEntity>;
 
-@Schema()
+@Schema({_id: true})
 export class AccessPlanEntity {
+
+    @Prop({type: Types.ObjectId})
+    _id?: Types.ObjectId;
 
     @Prop()
     name: string;
@@ -16,7 +20,7 @@ export class AccessPlanEntity {
     @Prop()
     description: string;
 
-    @Prop({type: [{type: mongoose.Schema.Types.ObjectId, ref: 'ReceiverEntity'}], })
+    @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'ReceiverEntity',  })
     receiver: ReceiverEntity
 }
 

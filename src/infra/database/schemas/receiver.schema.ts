@@ -1,9 +1,13 @@
 import {Prop, Schema, SchemaFactory} from "@nestjs/mongoose";
-import {HydratedDocument} from "mongoose";
+import {HydratedDocument, Types} from "mongoose";
 
 export type ReceiverSchemaDocument = HydratedDocument<ReceiverEntity>;
-@Schema()
+@Schema({_id: true})
 export class ReceiverEntity {
+
+    @Prop({type: Types.ObjectId})
+    _id?: Types.ObjectId;
+
     @Prop()
     name: string;
 

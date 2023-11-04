@@ -1,7 +1,7 @@
-import {ReceiverSchemaDocument} from "../../../database/schemas/receiver.schema";
-import {AccessPlanSchemaDocument} from "../../../database/schemas/accessPlan.schema";
+import {ReceiverEntity, ReceiverSchemaDocument} from "../../../database/schemas/receiver.schema";
+import {AccessPlanEntity, AccessPlanSchemaDocument} from "../../../database/schemas/accessPlan.schema";
 
 export type AccessPlanPersistence = {
-    receiverSchema: Partial<ReceiverSchemaDocument>;
-    accessPlanSchema: Partial<AccessPlanSchemaDocument>;
+    receiverSchema: ReceiverEntity;
+    accessPlanSchema: AccessPlanEntity;
 }

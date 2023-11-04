@@ -7,8 +7,7 @@ export default class UniqueIdentifier extends ValueObject<string> {
     }
 
     public static create(id?: string): UniqueIdentifier {
-        const uuid = UuidFactory.get(id);
-        return new UniqueIdentifier(uuid);
+        return new UniqueIdentifier(id);
     }
 
 }

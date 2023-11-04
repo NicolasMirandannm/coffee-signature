@@ -2,11 +2,11 @@ import IMapper from "../iMapper";
 import AccessPlan, {AccessPlanProps} from "../../../../domain/accessPlan/accessPlan";
 import {AccessPlanPersistence} from "./accessPlanPersistence";
 import {Injectable} from "@nestjs/common";
-import {AccessPlanSchemaDocument} from "../../../database/schemas/accessPlan.schema";
+import {AccessPlanEntity} from "../../../database/schemas/accessPlan.schema";
 import Receiver, {ReceiverProps} from "../../../../domain/accessPlan/entities/receiver.domainEntity";
 import UniqueIdentifier from "../../../../shared/valueObjects/uniqueIdentifier.valueObj";
 import InfraException from "../../../../shared/exceptions/infraException";
-import {ReceiverSchemaDocument} from "../../../database/schemas/receiver.schema";
+import {ReceiverEntity} from "../../../database/schemas/receiver.schema";
 import {Types} from "mongoose";
 
 
@@ -41,18 +41,26 @@ export default class AccessPlanMapper implements IMapper<AccessPlan, AccessPlanP
         InfraException.whenParameterIsNull(accessPlan, 'could not map to persistence without domain accessPlan.')
 
         const receiver = accessPlan.getReceiver();
-        const accessPlanSchema: Partial<AccessPlanSchemaDocument> = {
-            _id: new Types.ObjectId(accessPlan.getId().value),
-            name: accessPlan.getProps().planName,
-            price: accessPlan.getProps().price,
-            description: accessPlan.getProps().description,
-        }
 
-        const receiverSchema: Partial<ReceiverSchemaDocument> = {
-            _id: new Types.ObjectId(accessPlan.getProps().receiver.getId().value),
+        const receiverSchema: ReceiverEntity = {
             name: receiver.name,
             cpf: receiver.cpf,
             pixKey: receiver.pixKey
+        }
+
+        if (accessPlan.getProps().receiver.getId()) {
+            receiverSchema._id = new Types.ObjectId(accessPlan.getProps().receiver.getId().value)
+        }
+
+        const accessPlanSchema: AccessPlanEntity = {
+            name: accessPlan.getProps().planName,
+            price: accessPlan.getProps().price,
+            description: accessPlan.getProps().description,
+            receiver: receiverSchema
+        }
+
+        if (accessPlan.getId()) {
+            accessPlanSchema._id = new Types.ObjectId(accessPlan.getId().value)
         }
 
         return {
