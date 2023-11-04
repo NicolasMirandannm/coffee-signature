@@ -2,7 +2,7 @@ import {Prop, Schema, SchemaFactory} from "@nestjs/mongoose";
 import * as mongoose  from "mongoose";
 import {ReceiverEntity} from "./receiver.schema";
 
-export type AccessPlanDocument = mongoose.HydratedDocument<AccessPlanEntity>;
+export type AccessPlanSchemaDocument = mongoose.HydratedDocument<AccessPlanEntity>;
 
 @Schema()
 export class AccessPlanEntity {
