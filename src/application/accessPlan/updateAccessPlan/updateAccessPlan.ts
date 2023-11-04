@@ -1,5 +1,5 @@
 import IUpdateAccessPlan from "./iUpdateAccessPlan";
-import {AccessPlanDto} from "../createAnAccessPlan/iCreateAnAccessPlan";
+import {AccessPlanDto} from "../createAccessPlan/iCreateAccessPlan";
 import AccessPlan, {AccessPlanProps} from "../../../domain/accessPlan/accessPlan";
 import Receiver from "../../../domain/accessPlan/entities/receiver.domainEntity";
 import {Inject} from "@nestjs/common";

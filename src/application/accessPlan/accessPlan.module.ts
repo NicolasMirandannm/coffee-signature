@@ -1,6 +1,6 @@
 import {Module} from "@nestjs/common";
 import RepositoryModule from "../../infra/repository/repository.module";
-import CreateAnAccessPlan from "./createAnAccessPlan/createAnAccessPlan";
+import CreateAccessPlan from "./createAccessPlan/createAccessPlan";
 import FindAccessPlan from "./findAccessPlans/findAccessPlan";
 import AccessPlanRestController from "./accessPlanRest.controller";
 import UpdateAccessPlan from "./updateAccessPlan/updateAccessPlan";
@@ -12,7 +12,7 @@ import DeleteAccessPlan from "./deleteAccessPlan/deleteAccessPlan";
     providers: [
         {
             provide: 'ICreateAnAccessPlan',
-            useClass: CreateAnAccessPlan
+            useClass: CreateAccessPlan
         },
         {
             provide: 'IFindAccessPlan',

@@ -1,4 +1,4 @@
-import {AccessPlanDto} from "../createAnAccessPlan/iCreateAnAccessPlan";
+import {AccessPlanDto} from "../createAccessPlan/iCreateAccessPlan";
 import AccessPlan from "../../../domain/accessPlan/accessPlan";
 
 export default interface IUpdateAccessPlan {

@@ -1,5 +1,5 @@
 import {Inject, Injectable} from "@nestjs/common";
-import ICreateAnAccessPlan, {AccessPlanDto} from "./iCreateAnAccessPlan";
+import ICreateAccessPlan, {AccessPlanDto} from "./iCreateAccessPlan";
 import AccessPlan, {AccessPlanProps} from "../../../domain/accessPlan/accessPlan";
 import Receiver from "../../../domain/accessPlan/entities/receiver.domainEntity";
 import DomainException from "../../../shared/exceptions/domainException";
@@ -7,7 +7,7 @@ import ApplicationException from "../../../shared/exceptions/applicationExceptio
 import IAccessPlanRepository from "../../../domain/repository/iAccessPlanRepository";
 
 @Injectable()
-export default class CreateAnAccessPlan implements ICreateAnAccessPlan {
+export default class CreateAccessPlan implements ICreateAccessPlan {
 
     constructor(
        @Inject('IAccessPlanRepository')

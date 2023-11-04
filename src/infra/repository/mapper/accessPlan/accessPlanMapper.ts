@@ -62,7 +62,6 @@ export default class AccessPlanMapper implements IMapper<AccessPlan, AccessPlanP
         if (accessPlan.getId()) {
             accessPlanSchema._id = new Types.ObjectId(accessPlan.getId().value)
         }
-
         return {
             accessPlanSchema,
             receiverSchema,

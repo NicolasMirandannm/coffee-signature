@@ -3,6 +3,7 @@ import Signature, {SignatureProps} from "../../../../domain/signature/signature"
 import {SignatureEntity} from "../../../database/schemas/signature.schema";
 import {Types} from "mongoose";
 import UniqueIdentifier from "../../../../shared/valueObjects/uniqueIdentifier.valueObj";
+import {AccessPlanEntity} from "../../../database/schemas/accessPlan.schema";
 
 export default class SignatureMapper implements IMapper<Signature, SignatureEntity> {
     toDomain(signatureSchema: SignatureEntity): Signature {
@@ -16,12 +17,15 @@ export default class SignatureMapper implements IMapper<Signature, SignatureEnti
     }
 
     toPersistence(domainSignature: Signature): SignatureEntity {
+        const accessPlan = new AccessPlanEntity();
+        accessPlan._id = new Types.ObjectId(domainSignature.getProps().accessPlanId.value);
+
         const signatureSchema: SignatureEntity = {
             subscriptionDate: domainSignature.getProps().subscriptionDate,
             clientName: domainSignature.getProps().clientName,
             pendingPayment: domainSignature.getProps().pendingPayment,
+            accessPlan
         };
-        signatureSchema.accessPlan._id = new Types.ObjectId(domainSignature.getProps().accessPlanId.value);
 
         if (domainSignature.getId() != null)
             signatureSchema._id = new Types.ObjectId(domainSignature.getId().value);

@@ -37,7 +37,7 @@ export default class SignatureRepository implements ISignatureRepository {
 
     async save(signature: Signature): Promise<void> {
         const signatureSchema = this.mapper.toPersistence(signature);
-        const signatureModel = new this.signatureModel({...signatureSchema});
+        const signatureModel = new this.signatureModel({...signatureSchema, _id: new Types.ObjectId()});
 
         await signatureModel.save();
     }

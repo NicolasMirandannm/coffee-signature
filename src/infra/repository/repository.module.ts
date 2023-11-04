@@ -22,11 +22,11 @@ import SignatureRepository from "./signatureRepository";
             useClass: SignatureMapper
         },
         {
-            provide: 'SignatureRepository',
+            provide: 'ISignatureRepository',
             useClass: SignatureRepository
         },
     ],
-    exports: ['IAccessPlanRepository', 'SignatureRepository']
+    exports: ['IAccessPlanRepository', 'ISignatureRepository']
 })
 export default class RepositoryModule {
 }

@@ -24,7 +24,7 @@ export default class AccessPlanRepository implements IAccessPlanRepository {
 
     async save(domainAccessPlan: AccessPlan): Promise<void> {
         const {accessPlanSchema, receiverSchema} = this.mapper.toPersistence(domainAccessPlan);
-        let receiver = this.findReceiver(receiverSchema, domainAccessPlan.getReceiver().cpf);
+        let receiver = await this.findReceiver(receiverSchema, domainAccessPlan.getReceiver().cpf);
 
         const accessPlan = new this.accessPlanModel({...accessPlanSchema, _id: new Types.ObjectId(), receiver});
         await accessPlan.save();

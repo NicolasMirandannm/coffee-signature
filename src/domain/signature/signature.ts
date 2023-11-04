@@ -1,6 +1,7 @@
 import AggregateRoot from "../../shared/aggregateRoot/aggregateRoot";
 import UniqueIdentifier from "../../shared/valueObjects/uniqueIdentifier.valueObj";
 import DomainException from "../../shared/exceptions/domainException";
+import e from "express";
 
 export type SignatureProps = {
     accessPlanId: UniqueIdentifier,
@@ -31,4 +32,12 @@ export default class Signature extends AggregateRoot<SignatureProps> {
         }
         return Signature.create(props);
     }
+
+    public editSignature(editSignature: {clientName: string, planId: string, pendingPayment: boolean}): void {
+        DomainException.whenParameterIsNull(editSignature, 'name is empty.')
+        this.props.clientName = editSignature.clientName;
+        this.props.pendingPayment = editSignature.pendingPayment;
+        this.props.accessPlanId = UniqueIdentifier.create(editSignature.planId);
+    }
+
 }

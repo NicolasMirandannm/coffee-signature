@@ -9,6 +9,6 @@ export type AccessPlanDto = {
     }
 }
 
-export default interface ICreateAnAccessPlan {
+export default interface ICreateAccessPlan {
     execute(accessPlanDto: AccessPlanDto): Promise<void>;
 }

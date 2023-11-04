@@ -1,5 +1,5 @@
 import {Body, Controller, Delete, Get, Inject, Param, Patch, Post, Query} from "@nestjs/common";
-import ICreateAnAccessPlan, {AccessPlanDto} from "./createAnAccessPlan/iCreateAnAccessPlan";
+import ICreateAccessPlan, {AccessPlanDto} from "./createAccessPlan/iCreateAccessPlan";
 import IFindAccessPlan from "./findAccessPlans/iFindAccessPlan";
 import AccessPlan from "../../domain/accessPlan/accessPlan";
 import IUpdateAccessPlan from "./updateAccessPlan/iUpdateAccessPlan";
@@ -9,7 +9,7 @@ import IDeleteAccessPlan from "./deleteAccessPlan/iDeleteAccessPlan";
 export default class AccessPlanRestController {
     constructor(
         @Inject('ICreateAnAccessPlan')
-        private readonly createAnAccessPlanService: ICreateAnAccessPlan,
+        private readonly createAnAccessPlanService: ICreateAccessPlan,
         @Inject('IFindAccessPlan')
         private readonly findAccessPlanService: IFindAccessPlan,
         @Inject('IUpdateAccessPlan')
