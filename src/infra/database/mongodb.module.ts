@@ -3,6 +3,7 @@ import {MongooseModule, MongooseModuleOptions} from "@nestjs/mongoose";
 import {ReceiverEntity, ReceiverSchema} from "./schemas/receiver.schema";
 import {AccessPlanEntity, AccessPlanSchema} from "./schemas/accessPlan.schema";
 import {ConfigModule, ConfigService} from "@nestjs/config";
+import {SignatureEntity} from "./schemas/signature.schema";
 
 @Module({
     imports: [
@@ -23,6 +24,10 @@ import {ConfigModule, ConfigService} from "@nestjs/config";
             {
                 name: AccessPlanEntity.name,
                 schema: AccessPlanSchema
+            },
+            {
+                name: SignatureEntity.name,
+                schema: SignatureEntity
             }
         ])
     ],

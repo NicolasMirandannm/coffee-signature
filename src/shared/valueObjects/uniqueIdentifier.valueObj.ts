@@ -6,7 +6,7 @@ export default class UniqueIdentifier extends ValueObject<string> {
         super(props);
     }
 
-    public static create(id?: string): UniqueIdentifier {
+    public static create(id: string): UniqueIdentifier {
         return new UniqueIdentifier(id);
     }
 
