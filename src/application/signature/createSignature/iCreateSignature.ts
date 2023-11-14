@@ -1,5 +1,5 @@
-import {SignatureCreateDto} from "../dtos/signatureCreateDto";
+import { SignatureCreateDto } from '../dtos/signatureCreateDto';
 
 export default interface ICreateSignature {
-    execute(signatureDto: SignatureCreateDto): Promise<void>;
+  execute(signatureDto: SignatureCreateDto): Promise<void>;
 }

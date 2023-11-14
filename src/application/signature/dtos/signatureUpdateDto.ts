@@ -1,5 +1,5 @@
 export type SignatureUpdateDto = {
-    planId: string,
-    clientName: string,
-    pendingPayment: boolean,
-}
+  planId: string;
+  clientName: string;
+  pendingPayment: boolean;
+};

@@ -1,3 +1,3 @@
 export default interface IDeleteSignature {
-    execute(id: string): Promise<void>;
+  execute(id: string): Promise<void>;
 }

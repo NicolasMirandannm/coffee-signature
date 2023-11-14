@@ -1,14 +1,16 @@
-import UniqueIdentifier from "../valueObjects/uniqueIdentifier.valueObj";
-
+import UniqueIdentifier from '../valueObjects/uniqueIdentifier.valueObj';
 
 export default abstract class DomainEntity<T> {
-    protected constructor(protected props: T, protected id: UniqueIdentifier) {}
+  protected constructor(
+    protected props: T,
+    protected id: UniqueIdentifier,
+  ) {}
 
-    public getProps(): T {
-        return this.props;
-    }
+  public getProps(): T {
+    return this.props;
+  }
 
-    public getId(): UniqueIdentifier {
-        return this.id;
-    }
+  public getId(): UniqueIdentifier {
+    return this.id;
+  }
 }

@@ -1,6 +1,6 @@
-import AccessPlan from "../../../domain/accessPlan/accessPlan";
+import AccessPlan from '../../../domain/accessPlan/accessPlan';
 
 export default interface IFindAccessPlan {
-    findByClientName(name: string): Promise<AccessPlan>;
-    findAll(): Promise<Array<AccessPlan>>;
+  findByClientName(name: string): Promise<AccessPlan>;
+  findAll(): Promise<Array<AccessPlan>>;
 }
