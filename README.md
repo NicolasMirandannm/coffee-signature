@@ -96,7 +96,7 @@ CRUD operations created using domain driven design
 To create a signature you need this dto, http POST:
 ```json
 {
-  "clientName": "nicolas leonardo miranda lima",
+  "clientId": "nicolas leonardo miranda lima",
   "planId": "6546bf6e64d98f2d227cf110"
 }
 ```
@@ -108,7 +108,7 @@ To update a signature you need this dto with the signature id, http PATCH:
 ```json
 {
   "planId": "6546bf6e64d98f2d227cf110",
-  "clientName": "nicolas leonardo miranda lima",
+  "clientId": "nicolas leonardo miranda lima",
   "pendingPayment": false
 }
 ```

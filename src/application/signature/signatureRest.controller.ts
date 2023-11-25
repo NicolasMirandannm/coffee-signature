@@ -7,6 +7,7 @@ import {
   Param,
   Patch,
   Post,
+  Put,
   Query,
 } from '@nestjs/common';
 import ICreateSignature from './createSignature/iCreateSignature';
@@ -17,6 +18,8 @@ import Signature from '../../domain/signature/signature';
 import { SignatureCreateDto } from './dtos/signatureCreateDto';
 import { SignatureUpdateDto } from './dtos/signatureUpdateDto';
 import { ApiBody, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
+import CancelSignatureService from './cancelSignature/cancelSignatureService';
+import ActiveSignatureService from './activeSignature/activeSignatureService';
 
 @ApiTags('Signature')
 @Controller('signature')
@@ -30,6 +33,8 @@ export default class SignatureRestController {
     private readonly updateSignatureService: IUpdateSignature,
     @Inject('IDeleteSignature')
     private readonly deleteSignatureService: IDeleteSignature,
+    private readonly cancelSignatureService: CancelSignatureService,
+    private readonly activeSignatureService: ActiveSignatureService,
   ) {}
 
   @Get()
@@ -78,5 +83,25 @@ export default class SignatureRestController {
   @ApiResponse({ status: 200 })
   async delete(@Param('id') id: string): Promise<void> {
     return await this.deleteSignatureService.execute(id);
+  }
+
+  @Put('cancel/:id')
+  @ApiParam({ name: 'id', required: true, description: 'ID da assinatura' })
+  @ApiResponse({
+    status: 200,
+    description: 'quando o cancelamento ocorrer com sucesso.',
+  })
+  async cancelSignature(@Param('id') id: string): Promise<void> {
+    return await this.cancelSignatureService.execute(id);
+  }
+
+  @Put('active/:id')
+  @ApiParam({ name: 'id', required: true, description: 'ID da assinatura' })
+  @ApiResponse({
+    status: 200,
+    description: 'quando a ativação da assinatura ocorrer com sucesso.',
+  })
+  async activeSignature(@Param('id') id: string): Promise<void> {
+    return await this.activeSignatureService.execute(id);
   }
 }
