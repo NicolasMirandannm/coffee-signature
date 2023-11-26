@@ -1,11 +1,11 @@
 import IMapper from '../iMapper';
 import Signature, {
   SignatureProps,
-} from '../../../../domain/signature/signature';
-import { SignatureEntity } from '../../../database/schemas/signature.schema';
+} from '../../../../../domain/signature/signature';
+import { SignatureEntity } from '../../../../database/schemas/signature.schema';
 import { Types } from 'mongoose';
-import UniqueIdentifier from '../../../../shared/valueObjects/uniqueIdentifier.valueObj';
-import { AccessPlanEntity } from '../../../database/schemas/accessPlan.schema';
+import UniqueIdentifier from '../../../../../shared/valueObjects/uniqueIdentifier.valueObj';
+import { AccessPlanEntity } from '../../../../database/schemas/accessPlan.schema';
 
 export default class SignatureMapper
   implements IMapper<Signature, SignatureEntity>

@@ -16,10 +16,18 @@ import IFindAccessPlan from './findAccessPlans/iFindAccessPlan';
 import AccessPlan from '../../domain/accessPlan/accessPlan';
 import IUpdateAccessPlan from './updateAccessPlan/iUpdateAccessPlan';
 import IDeleteAccessPlan from './deleteAccessPlan/iDeleteAccessPlan';
-import { ApiBody, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiBody,
+  ApiParam,
+  ApiResponse,
+  ApiSecurity,
+  ApiTags,
+} from '@nestjs/swagger';
 import Signature from '../../domain/signature/signature';
 
 @ApiTags('Access Plan')
+@ApiSecurity('JWT-auth')
 @Controller('access-plan')
 export default class AccessPlanRestController {
   constructor(

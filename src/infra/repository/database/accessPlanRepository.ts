@@ -1,17 +1,17 @@
 import { Inject, Injectable } from '@nestjs/common';
-import IRepository from '../../shared/repository/iRepository';
-import AccessPlan from '../../domain/accessPlan/accessPlan';
+import IRepository from '../../../shared/repository/iRepository';
+import AccessPlan from '../../../domain/accessPlan/accessPlan';
 import { InjectModel } from '@nestjs/mongoose';
 import {
   AccessPlanEntity,
   AccessPlanSchemaDocument,
-} from '../database/schemas/accessPlan.schema';
+} from '../../database/schemas/accessPlan.schema';
 import { Model, Promise, Types } from 'mongoose';
-import { ReceiverEntity } from '../database/schemas/receiver.schema';
+import { ReceiverEntity } from '../../database/schemas/receiver.schema';
 import IMapper from './mapper/iMapper';
 import { AccessPlanPersistence } from './mapper/accessPlan/accessPlanPersistence';
-import IAccessPlanRepository from '../../domain/repository/iAccessPlanRepository';
-import InfraException from '../../shared/exceptions/infraException';
+import IAccessPlanRepository from '../../../domain/repository/iAccessPlanRepository';
+import InfraException from '../../../shared/exceptions/infraException';
 
 @Injectable()
 export default class AccessPlanRepository implements IAccessPlanRepository {

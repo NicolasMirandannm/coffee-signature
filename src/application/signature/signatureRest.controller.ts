@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Delete,
+  ExecutionContext,
   Get,
   Inject,
   Param,
@@ -17,11 +18,20 @@ import IDeleteSignature from './deleteSignature/iDeleteSignature';
 import Signature from '../../domain/signature/signature';
 import { SignatureCreateDto } from './dtos/signatureCreateDto';
 import { SignatureUpdateDto } from './dtos/signatureUpdateDto';
-import { ApiBody, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiBody,
+  ApiParam,
+  ApiResponse,
+  ApiSecurity,
+  ApiTags,
+} from '@nestjs/swagger';
 import CancelSignatureService from './cancelSignature/cancelSignatureService';
 import ActiveSignatureService from './activeSignature/activeSignatureService';
+import { Request } from 'express';
 
 @ApiTags('Signature')
+@ApiSecurity('JWT-auth')
 @Controller('signature')
 export default class SignatureRestController {
   constructor(
@@ -56,7 +66,7 @@ export default class SignatureRestController {
     examples: {
       examplo: {
         value: {
-          clientName: 'Nicolas Leonardo Miranda Lima',
+          clientId: 'das-d09-asdas-0d9as-ddas',
           planId: 'abc123',
         },
       },
