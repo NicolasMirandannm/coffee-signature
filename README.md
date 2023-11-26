@@ -33,6 +33,8 @@ $ npm install
 ```bash
 # start mongodb container
 $ docker-compose -f docker/database/docker-compose.yml up -d
+# or start using npm scrip
+$ npm run db:start
 
 # development
 $ npm run start:dev
